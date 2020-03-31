@@ -1,0 +1,7 @@
+version: "3.5"
+services:
+  covid19-stats:
+    image: docker.io/normander/covid-19-stats
+    restart: always
+    ports:
+     - "8000:8000"

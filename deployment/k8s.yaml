@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: covid19-stats
+  namespace: stats
+  labels:
+    app-name: covid19-stats
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app-name: covid19-stats
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+        prometheus.io/path: "/"
+    spec:
+      nodeSelector:
+        role: app
+      containers:
+         - name: covid19-stats
+           image: docker.io/normander/covid-19-stats
+           imagePullPolicy: Always
+           resources:
+             requests:
+               cpu: 10m
+               memory: 32Mi
+             limits:
+               cpu: 50m
+               memory: 64Mi
+           ports:
+             - containerPort: 8000
+               name: http
