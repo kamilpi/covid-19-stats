@@ -12,7 +12,7 @@ http_request_timeout = os.getenv('HTTP_REQUEST_TIMEOUT', 10)
 logging.basicConfig(format='%(asctime)s - %(message)s', level=log_level)
 
 def getStats():
-    pageUrl = "https://corona.lmao.ninja/countries?sort=country"
+    pageUrl = "https://corona.lmao.ninja/v3/covid-19/countries?sort=country"
     rsMetrics = requests.get(pageUrl, timeout=http_request_timeout)
 
     if (rsMetrics.ok):
